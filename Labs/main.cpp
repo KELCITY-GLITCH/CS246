@@ -1,1 +1,6 @@
 #include <iostream>
+
+void Password{
+
+    
+}
