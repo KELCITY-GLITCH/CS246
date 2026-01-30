@@ -1,0 +1,8 @@
+[
+  {
+    "key": "cmd+ctrl+s",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Git: Sync",
+    "when": "editorTextFocus || explorerViewletVisible || terminalFocus"
+  }
+]

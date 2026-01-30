@@ -1,0 +1,1 @@
+/Users/kelcityblacky/CS246/scripts/git-sync.sh /Users/kelcityblacky/CS246 ""

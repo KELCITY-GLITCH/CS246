@@ -6,9 +6,22 @@
 			"type": "shell",
 			"command": "/Users/kelcityblacky/CS246/scripts/git-sync.sh",
 			"args": [
-				"/Users/kelcityblacky/CS246"
+				"/Users/kelcityblacky/CS246",
+				"${input:commitMessage}"
 			],
-			"problemMatcher": []
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	],
+	"inputs": [
+		{
+			"id": "commitMessage",
+			"type": "promptString",
+			"description": "Commit message",
+			"default": "Update"
 		}
 	]
 }
