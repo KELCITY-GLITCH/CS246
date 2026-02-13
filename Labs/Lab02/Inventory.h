@@ -7,7 +7,7 @@
 #include <sstream>
 #include <fstream>
 #include <stdexcept>
-#include "Array"
+#include "Array.h"
 #include "Object.h"
 
 //Task 1
@@ -111,8 +111,24 @@ for (size_t i = 0; i <100; ++i)
         return oss.str();
     }
         
-    };     
+    };    
+    
+    bool Import(Inventory& inventory, const std::string& filename) {
+        std::ifstream file(filename);
+        
+        if (!file.is_open()) {
+            return false;
+        }
+        
+        int productID, count;
+        while (file >> productID >> count) {
+            if (productID >= 0 && productID < 100 && count >= 0) {
+                inventory.setItemCount(productID, count);
+            }
+        }
+        
+        file.close();
+        return true;
+    }
 }
-
 #endif
-//due thursday
