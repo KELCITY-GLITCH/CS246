@@ -1,0 +1,4 @@
+input size (n) = the value of x
+
+01. (03, c1, 1)
+02. ()
