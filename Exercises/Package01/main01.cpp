@@ -1,7 +1,11 @@
 #include "Square.h"
 #include "Rectangle.h"
 #include "Name.h"
-#include "age.h"
+#include "Age.h"
+#include "Person.h"
+//g#include "Circle.h"
+#include "TextBox.h"
+
 int main()
 {
     dsw::Rectangle x;
