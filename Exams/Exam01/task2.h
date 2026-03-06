@@ -40,6 +40,19 @@ struct CompareBySuitThenRank {
     bool operator() (Card const& a, Card const& b) const;
 };
 
+class Solitaire : public Card {
+    public: 
+        static const std::string RANKS;
+        static const std::string SUITS;
+
+        Solitaire();
+
+        void setSuit(Suit s) override;
+        void setRank(Rank r) override;
+
+        int hash() const override;
+};
+
 }
 
 #endif
