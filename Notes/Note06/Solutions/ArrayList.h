@@ -9,7 +9,7 @@
 namespace dsn 
 {
     template <class T>
-    class ArrayList : public Object 
+    class ArrayList 
     {
         private:
         Array<T> data;
