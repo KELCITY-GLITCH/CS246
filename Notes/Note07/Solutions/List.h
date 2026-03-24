@@ -29,7 +29,7 @@ namespace dsn
         {
             head = clone(obj.head);
             tail = head;
-            length = obj.length();
+            length = obj.length;
 
             if(head != nullptr)
             {
@@ -77,6 +77,7 @@ namespace dsn
                 head->prev() = t;
                 head = t;
             }
+	    length += 1;
         }
 
         void append(const T& obj)
@@ -95,6 +96,7 @@ namespace dsn
                 tail->next() = t;
                 tail = t;
             }
+	    length += 1;
         }
 
         void insert(size_t idx,const T& obj)
@@ -137,8 +139,235 @@ namespace dsn
                     else {t->prev()->next() = t;}
                     t->next()->prev() = t;
                 }
+		length += 1;
             }
         }
+
+	void insertAfter(Iterator<T>& itr,const T& obj)
+	{
+		if(itr.self == this && itr.node != nullptr)
+		{
+			//O(1)
+			Node<T>* t = new Node<T>(obj);
+
+			t->next() = itr.node->next();
+			t->prev() = itr.node;
+
+			if(t->next() == nullptr) {tail = t;}
+			else {t->next()->prev() = t;}
+			t->prev()->next() = t;
+			length += 1;
+		}	
+	}
+
+	void insertBefore(Iterator<T>& itr,const T& obj)
+	{
+		if(itr.self != this && itr.node != nullptr)
+		{
+			//O(1)
+			Node<T>* t = new Node<T>(obj);
+
+			t->prev() = itr.node->prev();
+			t->next() = itr.node;
+
+			if(t->prev() == nullptr) {head = t;}
+			else {t->prev()->next() = t;}
+			t->next()->prev() = t;
+			length += 1;
+		}
+	}
+
+	void removeFirst() 
+	{
+		//O(1)
+		if(head != nullptr)
+		{
+			Node<T>* t = head;
+			head = head->next();
+
+			if(head == nullptr) {tail = nullptr;}
+			else {head->prev() = nullptr;}
+			delete t;
+			length -= 1;
+		}
+	}
+
+	void removeLast() 
+	{
+		//O(1)
+		if(head != nullptr)
+		{
+			Node<T>* t = tail;
+			tail = tail->prev();
+
+			if(tail == nullptr) {head = nullptr;}
+			else {tail->next() = nullptr;}
+			delete t;
+			length -= 1;
+		}
+	}
+
+	void remove(size_t idx)
+	{
+		Node<T>* p = nullptr;
+		size_t i;
+
+		if(idx <= (length/2)) 
+		{
+			p = head;
+			i = 0;
+		
+			while(i < idx) 
+			{
+				p = p->next();
+				i += 1;
+			}
+		}
+		else if(idx > (length / 2) && idx <= length)
+		{
+			p = tail;
+			i = length;
+
+			while(i > idx) 
+			{
+				p = p->prev();
+				i -= 1;
+			}
+		}
+
+		if(p != nullptr)
+		{
+			if(p->next() == nullptr) {tail = p->prev();} 
+			else {p->next()->prev() = p->prev();}
+			
+			if(p->prev() == nullptr) {head = p->next();}
+			else {p->prev()->next() = p->next();}
+			delete p;
+			length -= 1;
+		}
+	}
+
+	void erase(Iterator<T>& itr) 
+	{
+		//O(1)
+		if(itr.self == this && itr.node != nullptr)
+		{
+			Node<T>* p = itr.node;
+
+			if(p->next() == nullptr) {tail = p->prev();}
+			else {p->next()->prev() = p->prev();}
+
+			if(p->prev() == nullptr) {head = p->next();}
+			else {p->prev()->next() = p->next();}
+			delete p;
+			length -= 1;
+		}
+	}
+
+	void erase()
+	{
+		//O(n)
+		clear(head);
+		head = nullptr;
+		tail = nullptr;
+		length = 0;
+	}
+
+	bool contains(const T& obj) const 
+	{
+		//O(n)
+		Node<T>* t = head;
+
+		while(t != nullptr && t->data() != obj) {t = t->next();}
+		return t != nullptr;
+	}
+
+	size_t search(const T& obj) 
+	{
+		//O(n)
+		Node<T>* t = head;
+		size_t i = 0;
+
+		while(t != nullptr && t->data() != obj) 
+		{
+			t = t->next();
+			i += 1;
+		}
+		return i;
+	}
+
+	Iterator<T> find(const T& obj)
+	{
+		//O(n)
+		Node<T>* t = head;
+
+		while(t != nullptr && t->data() != obj) {t = t->next();}
+		return Iterator<T>(*this,t);
+	}
+
+	T& get(size_t idx) 
+	{
+		//O(n)
+		Node<T>* t = head;
+		size_t i = 0;
+
+		while(t != nullptr && i < idx) 
+		{
+			t = t->next();
+			i += 1;
+		}
+
+		if(t != nullptr) {return t->data();}
+		throw std::invalid_argument("invalid index");
+	}
+
+	const T& get(size_t idx) const 
+	{
+		//O(n)
+		Node<T>* t = head;
+		size_t i = 0;
+
+		while(t != nullptr && i < idx) 
+		{
+			t = t->next();
+			i += 1;
+		}
+
+		if(t != nullptr) {return t->data();}
+		throw std::invalid_argument("invalid index");
+	}
+
+	T& first() 
+	{
+		//O(1)
+		if(head != nullptr) {return head->data();}
+		throw std::invalid_argument("list is empty");
+	}
+
+	const T& first() const 
+	{
+		//O(1)
+		if(head != nullptr) {return head->data();}
+		throw std::invalid_argument("list is empty");
+	}
+
+	T& last() 
+	{
+		//O(1)
+		if(tail != nullptr) {return tail->data();}
+		throw std::invalid_argument("list is empty");
+	}
+
+	const T& last() const  
+	{
+		//O(1)
+		if(tail != nullptr) {return tail->data();}
+		throw std::invalid_argument("list is empty");
+	}
+
+	bool empty() const {return head == nullptr;}
+
+	size_t size() const {return length;}
     };
 
     template <class T>
@@ -156,18 +385,13 @@ namespace dsn
 
         Iterator(List<T>& s) : self(&s), node(nullptr) {}
 
-        Iterator(const Iterator<T>& obj) 
-        {
-            self = obj.self;
-            node = obj.node;
-        }
+        Iterator(const Iterator<T>& obj) {self = obj.self;}
 
         Iterator<T>& operator=(const Iterator<T>& rhs)
         {
             if(this != &rhs)
             {
                 self = rhs.self;
-                node = rhs.node;
             }
             return *this;
         }
