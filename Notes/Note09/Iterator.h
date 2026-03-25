@@ -51,13 +51,19 @@ namespace dsn
 
 		const T& current() const 
 		{
-			if(data != nullptr) {return (*data)[size[0]];}
+			if(hasNext() && hasPrevious()) 
+			{
+				return (*data)[size[0]];
+			}
 			throw std::invalid_argument("node invalid");
 		}
 
 		T& current() 
 		{
-			if(data != nullptr) {return (*data)[size[0]];}
+			if(hasNext() && hasPrevious()) 
+			{
+				return (*data)[size[0]];
+			}
 			throw std::invalid_argument("node invalid");
 		}
 
