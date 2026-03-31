@@ -1,5 +1,5 @@
-#ifndef GENERIC06_H
-#define GENERIC06_H
+#ifndef GENERIC07_H
+#define GENERIC07_H
 
 #include "../Object.h"
 #include <string>
@@ -7,40 +7,46 @@
 
 namespace dsw
 {
-    template <class K, class V>
-    class Pair : public Object
+    template <class T>
+    class Item : public Object
     {
         private:
-        K key;
-        V value;
+        T content;
+        static int count;
 
         public:
-        Pair() : key(K()), value(V()) {}
+        Item() : content(T()) {}
 
-        Pair(const Pair& obj) : key(obj.key), value(obj.value) {}
+        Item(const Item& obj) : content(obj.content)
+        {
+            count++;
+        }
 
-        Pair& operator=(const Pair& rhs)
+        Item& operator=(const Item& rhs)
         {
             if (this != &rhs)
-            {
-                key   = rhs.key;
-                value = rhs.value;
-            }
+                content = rhs.content;
             return *this;
         }
 
-        virtual ~Pair() {}
+        virtual ~Item() { count--; }
 
-        K& mask()    { return key;   }
-        V& content() { return value; }
+        const T& object() const { return content; }
+
+        void object(const T& v) { content = v; }
+
+        int amount() const { return count; }
 
         std::string toString() const override
         {
             std::ostringstream oss;
-            oss << "<" << key << "," << value << ">";
+            oss << content << " (" << count << ")";
             return oss.str();
         }
     };
+
+    template <class T>
+    int Item<T>::count = 0;
 }
 
 #endif
