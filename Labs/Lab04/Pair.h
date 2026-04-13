@@ -11,10 +11,11 @@ namespace dsl
 		V content;
 		
 		public:
+
 		Pair() : identity(), content() {}
 		Pair(const K& key,const V& value) : identity(key), content(value) {}
 		
-		Pair(const Pair<K,V>& obj)
+		Pair(const Pair<K,V>& obj)  
 		{
 			identity = obj.identity;
 			content = obj.content;

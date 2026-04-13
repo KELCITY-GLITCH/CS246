@@ -6,5 +6,75 @@
 
 int main()
 {
+	int n;
+	std::cout << "Enter count: ";
+	std::cin >> n;
+
+	dsl::Generator gen;
+	gen.bothTypes();
+
+	dsl::Map<char, int> freq;
+	for(int i = 0; i < n; i++)
+	{
+		char ch = gen.next();
+		freq[ch] +=1;
+		
+	}
+
+	std::cout << "Mode: BOTH | Set size: 36 | Generated: " << n << "\n\n";
+
+	std::cout << gen << "\n";
+
+	std::cout << "Frequency Table:\n";
+	for(int i = 0; i < 26; i++)
+	{
+		char ch = 'a' + i;
+		if(freq.contains(ch))
+		{
+			std::cout << std::setw(4) << ch << ": " <<freq[ch] << "\n";
+		}
+	}
+
+	for(int i = 0; i < 10; i++)
+	{
+		char ch = '0' + i;
+		if(freq.contains(ch))
+		{
+			std::cout << std::setw(4) << ch << ": " << freq[ch] << "\n";	
+		}
+	}
+
+
+	std::cout << "\nDistinct characters observed: " << freq.size() << "\n";
+	std::cout << "Missing characters: ";
+
+	bool anyMissing = false;
+	for(int i = 0; i < 26; i ++)
+	{
+		char ch = 'a' + i;
+		if(!freq.contains(ch))
+		{
+			std::cout << ch;
+			anyMissing = true;
+		}
+	}
+
+	for(int i = 0; i < 10; i++)
+	{
+		char ch = '0' + i;
+		if(!freq.contains(ch))
+		{
+			std::cout << ch;
+			anyMissing = true;
+		}
+	}
+
+	if(!anyMissing) { std::cout << "none"; }
+	std::cout << "\n";
+
+	std::cout << "\n";
+
+	std::cout << "Full coverage: " << (freq.size() == 36 ? "yes" : "no") << "\n";
+
 	return 0;
 }

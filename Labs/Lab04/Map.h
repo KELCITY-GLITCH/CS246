@@ -20,6 +20,39 @@ namespace dsl
 		size_t length;
 
 		public:
+
+		void put(const K&key, const V& value)
+		{
+			if(!contains(key))
+			{
+				if(length == data.size())
+				{
+					throw std::out_of_range("map is full");
+				}
+				data[length] = Pair<K,V>(key, value);
+				length +=1;
+			}
+		}
+
+		void remove(const K& key)
+		{
+			size_t t = 0;
+
+			while(t < length && data[t].key() !=key)
+			{
+				t += 1;
+			}
+
+			if(t == length) { return; } //not found
+
+			while(t+ 1 < length)
+			{
+				data[t] = data[t + 1];
+				t += 1;
+			}
+			length -=1;
+		}
+
 		Map() : data(128), length(0) {}
 		
 		Map(size_t size) : data(size), length(0) {}
