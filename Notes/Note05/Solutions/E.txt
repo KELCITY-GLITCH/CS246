@@ -1,0 +1,12 @@
+n = the size of data
+
+(statement,time)
+01. (04 init,1)
+02. (04 cond,n+1)
+03. (06,n)
+04. (08,0)
+05. (04 upd,n)
+06. (11,1)
+
+T(n) = 3n + 3 = Q(n) given c1 = 1, c2 = 7, n1 = 1
+ 

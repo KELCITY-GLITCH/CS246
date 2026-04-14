@@ -1,0 +1,20 @@
+a) 11100111 => true
+b) 110101 => false
+c) 10100101 => true
+d) 11 => true
+e) 0, 1 => true
+
+n = size of data
+
+(statement,time)
+01. (03,1)
+02. (05 init, 1)
+03. (05 cond,floor(n/2)+1)
+04. (07,floor(n/2))
+05. (09,0)
+06. (05 upd,floor(n/2))
+07. (12,1)
+
+T(n) = 3floor(n/2) + 4 = Q(n) given c1 = 0.1, c2 = 5, n1 = 1
+
+

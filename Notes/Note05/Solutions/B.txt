@@ -1,0 +1,17 @@
+n = the size of data
+
+(statement, time)
+01. (04,1)
+02. (06 init,1)
+03. (06 cond,n + 1)
+04. (08,n)
+05. (10,n)
+06. (06 mod,n)
+07. (13,1)
+
+T(n) = 4n + 4 = Q(n) given c1 = 1, c2 = 10, n1 = 1
+
+n <= 4n + 4 <= 10n whenever n >= 1
+c1 <= 4 + 4/n <= c2 
+
+g(n) = Q(f(n)) if (c1)f(n) <= g(n) <= (c2)f(n) whenever n >= n0.

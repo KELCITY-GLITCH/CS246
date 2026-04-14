@@ -1,0 +1,28 @@
+input size (n) = the number of digits in the value of x
+
+runtime table
+01. (03,c1,1)
+02. (05,c2,1)
+03. (08,c3,1)
+04. (10,c4,n + 1)
+05. (11,c5,n)
+06. (10,c6,n)
+07. (14,c7,1)
+
+runtime function
+T(n) = (c1)(1) + (c2)(1) + (c3)(1) + (c4)(n+1) + (c5)(n) + (c6)(n) + (c7)(1)
+= c1 + c2 + c3 + c4n + c4 + c5n + c6n + c7 
+= (c4 + c5 + c6)n + (c1 + c2 + c3 + c4 + c7)
+=an + b 
+where a = c4 + c5 + c6 and b = c1 + c2 + c3 + c4 + c7
+if we let all cost equal 1, we get 
+T(n) = 3n + 5
+
+theta-notation 
+O(n) = {cn <= 3n + 5 <= dn whenever n >= m}
+
+c <= 3 + 5/n <= d  
+c <= 3 <= d 
+c <= 3 + 5 <= d 
+c <= 8 <= d 
+m = 1, c = 3, d = 8
