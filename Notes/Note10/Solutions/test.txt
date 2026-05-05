@@ -1,0 +1,5 @@
+(} - mismatched closed
+(())) - exceeds closing brace
+(() - unclosed opening 
+
+([{}{}<(([]))>]) - balance
