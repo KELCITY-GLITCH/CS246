@@ -1,0 +1,25 @@
+Is your number odd?
+Is your number prime?
+Is your number a power of 2?
+Is your number in the Fibonacci sequence?
+Is your number divisible by 3?
+Is your number in the Fibonacci sequence?
+Is your number divisible by 3?
+Is your number less than half 10?
+Your number is 7?
+Your number is 9?
+Your number is 1? 
+Is your number less than half 10?
+Your number is 4?
+Your number is 6?
+Your number is 10?
+Your number is 3?
+Your number is 5?
+
+
+
+
+
+
+Your number is 2?
+Your number is 8?
