@@ -18,7 +18,7 @@ namespace dsl
         }
 
         Tnode<T>* t = q.peek();
-        if(t->left != nullptr && t->right != nullptr)
+        if(t->left() != nullptr && t->right() != nullptr)
         {
             q.dequeue();
             q.enqueue(t->left());
