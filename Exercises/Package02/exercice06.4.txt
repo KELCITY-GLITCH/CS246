@@ -1,0 +1,44 @@
+Runtime Table
+
+Line    | Operation                         | Count
+-----------------------------------------------------
+03      | Declaration long c                | 1
+05      | Loop initialization i = 0          | 1
+05      | Loop condition test i < n          | n+1
+05      | Loop increment i += 1              | n
+07      | Modulo operation data[i] % 2       | n
+07      | Comparison == 0                    | n
+09      | c += 1 (worst case)                | n
+12      | return data.size() - c             | 1
+-----------------------------------------------------
+        | Total                             | 5n + 4
+
+
+Worst Case Runtime Function
+
+T(n) = 5n + 4
+
+
+We prove that T(n) ∈ Θ(n) by finding c1, c2, and n1 such that:
+
+c1·n ≤ 5n + 4 ≤ c2·n for all n ≥ n1
+
+
+Constants
+
+C1 = 5
+C2 = 6
+n1 = 4
+
+Verification:
+
+For n ≥ 4:
+
+Lower bound: 5n ≤ 5n + 4
+: 4 ≥ 0, which holds for n ≥ 4
+
+Upper bound: 5n + 4 ≤ 6n
+: 4 ≤ n, which holds for n ≥ 4
+
+
+T(n) ∈ Θ(n)
