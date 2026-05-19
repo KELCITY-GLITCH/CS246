@@ -1,0 +1,127 @@
+Exercise 10 - Master Theorem Problems
+
+Master Theorem Form:
+T(n) = aT(n/b) + O(n^d)
+
+Compare:
+n^(log_b(a)) with f(n)
+
+
+1. T(n) = T(n/2) + O(1)
+
+a = 1
+b = 2
+f(n) = O(1)
+n^(log_b(a)) = n^(log_2(1)) = n^0 = 1
+
+f(n) = O(1), so this is Case 2.
+
+T(n) = Θ(log n)
+
+
+2. T(n) = 2T(n/2) + O(n)
+
+a = 2
+b = 2
+f(n) = O(n)
+n^(log_b(a)) = n^(log_2(2)) = n^1 = n
+
+f(n) = O(n), so this is Case 2.
+
+T(n) = Θ(n log n)
+
+
+3. T(n) = 8T(n/2) + O(n^2)
+
+a = 8
+b = 2
+f(n) = O(n^2)
+n^(log_b(a)) = n^(log_2(8)) = n^3
+
+f(n) = O(n^2), which is smaller than n^3, so this is Case 1.
+
+T(n) = Θ(n^3)
+
+
+4. T(n) = 2T(n/2) + O(n^2)
+
+a = 2
+b = 2
+f(n) = O(n^2)
+n^(log_b(a)) = n^(log_2(2)) = n
+
+f(n) = O(n^2), which is larger than n, so this is Case 3.
+
+T(n) = Θ(n^2)
+
+
+5. T(n) = T(n/2) + O(n)
+
+a = 1
+b = 2
+f(n) = O(n)
+n^(log_b(a)) = n^(log_2(1)) = n^0 = 1
+
+f(n) = O(n), which is larger than 1, so this is Case 3.
+
+T(n) = Θ(n)
+
+
+6. T(n) = 2T(n/2) + O(n log n)
+
+a = 2
+b = 2
+f(n) = O(n log n)
+n^(log_b(a)) = n^(log_2(2)) = n
+
+f(n) = O(n log n), so this is Case 2 extension.
+
+T(n) = Θ(n log^2 n)
+
+
+7. T(n) = 4T(n/2) + O(n)
+
+a = 4
+b = 2
+f(n) = O(n)
+n^(log_b(a)) = n^(log_2(4)) = n^2
+
+f(n) = O(n), which is smaller than n^2, so this is Case 1.
+
+T(n) = Θ(n^2)
+
+
+8. T(n) = 3T(n/4) + O(n)
+
+a = 3
+b = 4
+f(n) = O(n)
+n^(log_b(a)) = n^(log_4(3))
+
+ log_4(3) is < than 1, f(n) = O(n) is larger, so this is Case 3.
+
+T(n) = Θ(n)
+
+
+9. T(n) = 4T(n/4) + O(n)
+
+a = 4
+b = 4
+f(n) = O(n)
+n^(log_b(a)) = n^(log_4(4)) = n
+
+f(n) = O(n), so this is Case 2.
+
+T(n) = Θ(n log n)
+
+
+10. T(n) = 7T(n/2) + O(n^2)
+
+a = 7
+b = 2
+f(n) = O(n^2)
+n^(log_b(a)) = n^(log_2(7))
+
+log_2(7) is = 2.81, n^2 is < n^2.81, so this is Case 1.
+
+T(n) = Θ(n^(log_2(7)))
