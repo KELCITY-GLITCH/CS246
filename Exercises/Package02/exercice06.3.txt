@@ -1,0 +1,39 @@
+Runtime Table
+
+Line	Operation	                                      Count
+3	    bool found = false;     	                        1
+5	    Loop initialization i = 1	                        1
+5	    Loop condition test i < str.size()	                n
+5	    Loop increment i += 1	                            n-1
+7	    if(found) check	                                    n-1
+18	    else if(data[i-1] == data[i]) check (worst case)	n-1
+20	    found = true (worst case)	                        n-1
+23	    return false;	                                    1
+        Total	                                            4n + 1
+
+Worst-Case Runtime Function
+T(n)=4n+1
+
+This is a linear function in n.
+
+Theta Notation
+
+prove that T(n) ∈ Θ(n²) by finding constants c₁, c₂, and n₁ such that:
+
+c1 • n ≤ 4n + 1 ≤ c2 • n for all n ≥ n1
+
+Constants:
+
+c₁ = 3
+c₂ = 5
+n₁ = 1
+
+For n ≥ 1:
+
+Lower bound: 3n ≤ 4n + 1
+-n + 1 ≤ 0, which holds for n ≥ 1 
+
+Upper bound: 4n + 1 ≤ 5n
+1 ≤ n, which holds for n ≥ 1
+
+T(n) ∈ Θ(n)
