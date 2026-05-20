@@ -1,0 +1,6 @@
+9. 
+a. Full Binary Tree
+   A full binary tree is a binary tree where every node has either 0 children or 2 children.
+
+b. Max-Heap
+   A max-heap is a complete binary tree where every parent node is greater than or equal to its children.  
