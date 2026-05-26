@@ -1,0 +1,3 @@
+Test Case 1 - Straight Path
+Path: rrrrd
+Valid Path: 1
